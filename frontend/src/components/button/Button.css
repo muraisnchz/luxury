@@ -1,0 +1,18 @@
+.lila{
+  background-color: rgb(97, 6, 91);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.sombra {
+  box-shadow: 2px 2px 8px gray;
+}
+
+.redondeado {
+  border-radius: 10px;
+}
+
+.grande {
+  padding: 12px 20px;
+  font-size: 18px;
+}
