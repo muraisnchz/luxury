@@ -62,11 +62,11 @@ const DetalleProducto = () => {
 
           <div className="detalle-acciones">
             {/* Botón mockeado (sin lógica de auth por ahora) */}
-            <Button texto="Agregar al Carrito" color="lila" size="grande" efecto="btn-hover" />
+            <Button texto="Agregar al Carrito" color="lila" size="grande" efecto="redondeado" />
             
             {/* Navegación de regreso al catálogo */}
             <Link to="/" className="btn-volver">
-              <Button texto="Volver al Catálogo" color="lila" size="grande" efecto="btn-hover" />
+              <Button texto="Volver al Catálogo" color="lila" size="grande" efecto="redondeado" />
             </Link>
           </div>
         </div>

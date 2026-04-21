@@ -24,7 +24,7 @@ const ProductCard = ({ _id, nombre, imagenUrl, descripcion, precio, categoriaId,
         <div className="product-actions">
           {/* Botón para ir a la vista de Detalle */}
           <Link to={`/producto/${_id}`}>
-            <Button texto="Ver detalle" color="lila" size="grande" efecto="btn-hover" />
+            <Button texto="Ver detalle" color="lila" size="grande" efecto="redondeado" />
           </Link>
           
           
