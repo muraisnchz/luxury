@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { obtenerProductoPorId } from '../../services/productoService';
 import './DetalleProducto.css';
 import Button from '../../components/button/Button';
+import Spinner from '../../components/spinner/Spinner';
 
 const DetalleProducto = () => {
   // 1. Extraemos el ID del producto directamente de la URL
@@ -23,11 +24,13 @@ const DetalleProducto = () => {
     cargarProducto();
   }, [id]); // El efecto se vuelve a ejecutar si el ID de la URL cambia
 
-  // 4. Renderizados condicionales mientras esperamos al backend
-  if (cargando) return <h2 className="loading-text">Cargando detalles de la joya...</h2>;
+  //Spinner para mostrar mientras se cargan los datos
+  if (cargando) {
+    return <Spinner color="violet" texto="Cargando detalles de la joya..." />;
+  }
   
   // Si el backend responde pero el producto no existe (ej. alguien escribió mal la URL)
-  if (!producto) return <h2 className="error-text">La joya que buscas no se encuentra disponible.</h2>;
+  if (!producto) return <Spinner color="red" texto="Producto no encontrado." />;
 
   // 5. Renderizado del detalle completo (Cumpliendo los requisitos de tu consigna)
   return (
