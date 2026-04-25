@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/productCard/ProductCard';
 import { obtenerProductos } from '../../services/productoService';
+import SkeletonCard from '../../components/skeleton/SkeletonCard';
 
 import './Catalogo.css';
 
@@ -25,26 +26,38 @@ const Catalogo = () => {
     cargarCatalogo();
   }, []);
 
-  if (cargando) return <h2>Cargando el catálogo de joyas...</h2>;
-
-  if (error) return <h2 style={{ color: 'red' }}>{error}</h2>;
+  // 2. Si hay error, lo mostramos (esto queda igual)
+  if (error) return <h2 style={{ color: 'red', textAlign: 'center', marginTop: '50px' }}>{error}</h2>;
 
   return (
     <div className="catalogo-container">
       <h1>Catálogo de Joyas</h1>
-      <div className="catalogo-grid">
-        {productos.map((producto) => (
-          <ProductCard
-            key={producto._id}
-            _id={producto._id}
-            nombre={producto.nombre}
-            imagenUrl={producto.imagenUrl}
-            descripcion={producto.descripcion}
-            precio={producto.precio}
-            categoriaId={producto.categoriaId}
-            onAddToCart={() => console.log(`Agregando ${producto.nombre} al carrito (Próximamente)`)}
-          />
-        ))}
+      
+      {/* 3. La misma grilla que usa el catálogo real */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+        
+        
+        {cargando ? (
+          // Si está cargando, generamos un arreglo falso de 6 elementos para dibujar 6 Skeletons
+          [...Array(6)].map((_, index) => (
+            <SkeletonCard key={index} />
+          ))
+        ) : (
+          // Si ya terminó de cargar, mapeamos los productos reales
+          productos.map((producto) => (
+            <ProductCard 
+              key={producto._id}
+              _id={producto._id}
+              nombre={producto.nombre}
+              imagenUrl={producto.imagenUrl}
+              descripcion={producto.descripcion}
+              precio={producto.precio}
+              categoriaId={producto.categoriaId}
+              onAddToCart={() => console.log('Agregar al carrito')}
+            />
+          ))
+        )}
+
       </div>
     </div>
   );
