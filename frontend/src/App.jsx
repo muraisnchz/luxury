@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <div className="app-container">
         
-        {/* ¡Queda súper limpio! Ya no le pasamos el array */}
+        
         <Navbar brandName="Luxury" />
 
         <Routes>
