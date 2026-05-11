@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
+const { authMiddleware, adminMiddleware } = require('../middleware/authMiddleware');
+
 
 // Crear un usuario (Registro)
 router.post('/', usuarioController.crearUsuario);
 
-// Obtener todos los usuarios (Ideal para el Administrador)
-router.get('/', usuarioController.obtenerUsuarios);
+// Obtener todos los usuarios (solo para administradores)
+router.get('/',authMiddleware, adminMiddleware , usuarioController.obtenerUsuarios);
 
 // Obtener un usuario por su ID
 router.get('/:id', usuarioController.obtenerUsuarioPorId);

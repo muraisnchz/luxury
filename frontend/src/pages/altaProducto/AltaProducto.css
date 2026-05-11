@@ -111,3 +111,43 @@
 .btn-cancel:hover {
   background-color: rgba(212, 175, 55, 0.1); /* Brillo dorado de fondo */
 }
+
+/* Contenedor relativo para poder ubicar el ojito adentro */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Le damos espacio a la derecha al texto para que no se pise con el ojito */
+.password-input-container input {
+  width: 100%;
+  padding-right: 40px; 
+}
+
+/* Posicionamos el botón sobre la derecha del input */
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.toggle-password-btn:hover {
+  color: #5a189a; /* Tu color violeta */
+}
+
+/* Estilos para la tabla de usuarios en page Usuarios.jsx */
+.tabla-usuarios tbody tr:hover {
+  background-color: #f3e5f5; /* Efecto hover para saber qué fila estamos mirando */
+}
+
+.tabla-usuarios th {
+  text-align: center;
+}
