@@ -28,7 +28,7 @@ const Catalogo = () => {
     cargarCatalogo();
   }, []);
 
-  // 2. Si hay error, lo mostramos (esto queda igual)
+  // 2. Si hay error, lo mostramos
   if (error) return <h2 style={{ color: 'red', textAlign: 'center', marginTop: '50px' }}>{error}</h2>;
 
   return (

@@ -1,5 +1,5 @@
 .catalogo-container {
-    padding: 2rem 0;
+    padding: 2px 0;
     text-align: center;
     background-color: rgb(171, 144, 180);
 }
@@ -10,4 +10,10 @@
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
+
+}
+
+.catalogo-container h1 {
+    margin-bottom: 50px;
+    
 }
