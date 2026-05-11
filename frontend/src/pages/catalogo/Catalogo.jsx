@@ -33,10 +33,7 @@ const Catalogo = () => {
 
   return (
     <div className="catalogo-container">
-      {/* Botón para agregar producto (solo para admin) */}
-      <Link to ="/admin/altaProducto">
-      <Button texto="Agregar producto" style={{position: 'absolute', top: '20px', left: '20px'}} color="lila" size="grande" efecto="redondeado" />
-      </Link>
+      
       <h1>Catálogo de Joyas</h1>
       
       {/* La misma grilla que usa el catálogo real */}

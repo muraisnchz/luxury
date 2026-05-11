@@ -1,32 +1,156 @@
+/* --- Contenedor principal de la barra --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(97, 6, 91);
-  color: white;
   padding: 1rem 2rem;
+  background-color: #61065b; /* ¡Acá agregamos el fondo violeta! */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: una sombrita sutil para que despegue del fondo */
 }
 
-.navbar-brand h2 {
-  margin: 0;
-  font-size: 1.5rem;
+/* --- Estilos del Logo --- */
+.navbar .logo a {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff; /* Cambiamos a blanco para que resalte */
+  transition: transform 0.2s ease;
 }
 
-.navbar-links {
-  list-style: none;
+.navbar .logo a:hover {
+  transform: scale(1.05);
+}
+
+/* --- Contenedor de los enlaces --- */
+.nav-links {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 2rem; /* Espacio impecable entre cada enlace/ícono */
+  list-style: none; /* Chau puntitos de la lista */
   margin: 0;
   padding: 0;
 }
 
-.navbar-links a {
-  color: white;
+/* --- Estilos de cada enlace e ícono --- */
+.nav-links li a {
   text-decoration: none;
+  color: #ffffff; /* Letras e íconos en blanco */
+  font-size: 1.1rem;
   font-weight: 500;
+  display: flex;
+  align-items: center;
   transition: color 0.3s ease;
 }
 
-.navbar-links a:hover {
-  color: #61dafb;
+
+/* --- Efecto hover para los enlaces --- */
+.nav-links li a:hover {
+  color: #e0aaff; 
+}
+
+/* --- Ajuste específico si querés que el ícono sea un toque más grande al pasar el mouse --- */
+.nav-links li a svg {
+  transition: transform 0.3s ease;
+}
+
+.nav-links li a:hover svg {
+  transform: scale(1.1);
+}
+
+/* Contenedor del ícono y el menú */
+.user-menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-icon-trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.user-icon-trigger:hover {
+  transform: scale(1.1);
+}
+
+/* El cuadro del menú */
+/* --- El contenedor blanco del menú --- */
+.dropdown-menu {
+  position: absolute;
+  top: 45px; 
+  right: 0;
+  background-color: white;
+  min-width: 220px; /* 1. Aumentamos un poquito el ancho (antes era 180px) */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  padding: 10px 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 2. MAGIA: Corta cualquier cosa que se salga de los bordes redondeados */
+}
+
+/* --- Los enlaces e ítems adentro del menú --- */
+.nav-links .dropdown-menu a, 
+.nav-links .dropdown-menu .btn-logout-menu {
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #333333; 
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box; /* 3. MAGIA: Hace que el ancho 100% incluya el padding */
+  white-space: nowrap; /* 4. Evita que textos largos se partan en dos líneas */
+}
+
+/* Enlaces e ítems dentro del menú */
+.nav-links .dropdown-menu a, 
+.nav-links .dropdown-menu .btn-logout-menu {
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #333333; 
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box; /* 3. MAGIA: Hace que el ancho 100% incluya el padding */
+  white-space: nowrap; /* 4. Evita que textos largos se partan en dos líneas */
+}
+
+.nav-links .dropdown-menu a:hover, 
+.nav-links .dropdown-menu .btn-logout-menu:hover {
+  background-color: #f3e5f5; 
+  color: #5a189a;
+}
+
+.menu-icon {
+  font-size: 1.1rem;
+  color: #5a189a;
+}
+
+.dropdown-menu hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 5px 0;
+}
+
+.btn-logout-menu {
+  font-family: inherit;
+  font-weight: 500;
 }

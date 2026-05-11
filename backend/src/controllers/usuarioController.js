@@ -4,6 +4,17 @@ const {Carrito} = require('../models/carrito');
 // Alta
 const crearUsuario = async (req, res) => {
   try {
+    const { email } = req.body;
+
+    // Verificamos si ya existe un usuario con ese email
+    const usuarioExistente = await Usuario.findOne({ email });
+    
+    // Si lo encuentra, cortamos la ejecución acá y devolvemos un error 400
+    if (usuarioExistente) {
+      return res.status(400).json({ mensaje: 'El email ingresado ya se encuentra registrado.' });
+    }
+
+    // 2. Si pasa la validación, procedemos a crearlo
     const nuevoUsuario = new Usuario(req.body);
     await nuevoUsuario.save();
 
@@ -11,7 +22,7 @@ const crearUsuario = async (req, res) => {
     const nuevoCarrito = new Carrito({ usuarioId: nuevoUsuario._id, items: [], total: 0 });
     await nuevoCarrito.save();
 
-    res.status(201).json({ mensaje: 'Usuario creado', usuario: nuevoUsuario });
+    res.status(201).json({ mensaje: 'Usuario creado con éxito', usuario: nuevoUsuario });
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al crear usuario', error: error.message });
   }
