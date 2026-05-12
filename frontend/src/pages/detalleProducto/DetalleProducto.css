@@ -1,205 +1,119 @@
-/* Estilos de detalle de producto inspirados en ProductCard */
+/* --- Fondo general (si ya lo tenés en tu index.css, podés borrar esto) --- */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgb(171, 144, 180);
 }
 
-.detalle-producto {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  padding: 32px 16px;
-  max-width: 1180px;
+/* --- Contenedor principal que centra todo --- */
+.detalle-container {
+  padding: 40px 20px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-.detalle-producto__imagen,
-.detalle-producto__info {
-  background: #ffffff;
+/* --- La tarjeta blanca que envuelve la imagen y la info --- */
+.detalle-layout {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff; /* Fondo blanco de la tarjeta */
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra elegante */
+  overflow: hidden; /* Para que la imagen no se salga de las esquinas redondeadas */
 }
 
-.detalle-categoria{
-  display: inline-block;
-  margin-top: 0;
-  padding: 6px 14px;
-  color: #ffffff;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 600;
+/* --- Columna Izquierda: Imagen --- */
+.detalle-imagen-container {
+  flex: 1 1 400px; /* Toma la mitad del espacio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8fafc; /* Un gris muuuy clarito por si la imagen es transparente */
 }
 
-.detalle-precio{
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-.detalle-descripcion{
-  margin: 0;
-  color: #ffffff;
-  line-height: 1.7;
-  font-size: 1rem;
-}
-
-.detalle-producto__imagen {
-  flex: 1 1 360px;
-  min-width: 280px;
-  max-width: 540px;
-  overflow: hidden;
-}
-
-.detalle-producto__imagen img {
+.detalle-imagen {
   width: 100%;
-  display: block;
-  height: 100%;
-  object-fit: cover;
+  height: 450px;
+  object-fit: cover; /* MAGIA: Evita que se estire feo */
 }
 
-.detalle-producto__info {
-  flex: 1 1 360px;
-  min-width: 280px;
-  max-width: 540px;
-  padding: 24px;
+/* --- Columna Derecha: Información --- */
+.detalle-info {
+  flex: 1 1 400px; /* Toma la otra mitad del espacio */
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px; /* Espacio entre cada elemento de texto */
 }
 
-.detalle-producto__titulo {
+.detalle-titulo {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #333333; /* Texto oscuro para que se lea sobre el fondo blanco */
+}
+
+.detalle-categoria {
+  display: inline-block;
+  align-self: center; /* <-- Magia para centrarlo junto con el resto */
+  padding: 8px 16px;
+  background: #ffffff; 
+  color: #000000;
+  border-radius: 8px; /* <-- Bordes más cuadrados con un redondeo sutil, igual que tus botones */
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.detalle-precio {
   margin: 0;
   font-size: 2rem;
-  color: #ffffff;
-}
-
-.detalle-producto__categoria {
-  display: inline-block;
-  margin-top: 0;
-  padding: 6px 14px;
-  background: #e0f2fe;
-  color: #ffffff;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-/*.detalle-acciones{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px; 
-}*/
-
-    .detalle-producto__precio {
-  margin: 0;
-  font-size: 1.75rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #333333;
+}
+
+.detalle-descripcion {
+  color: #555555;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.detalle-descripcion h3 {
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+/* --- Contenedor de botones --- */
+.detalle-acciones {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  margin-left: 30px;
+  flex-wrap: wrap;
+}
+
+/* Le sacamos el subrayado a los Links de React Router */
+.detalle-acciones a {
+  text-decoration: none;
+}
+
+/* --- Responsive (Para celulares) --- */
+@media (max-width: 768px) {
+  .detalle-layout {
+    flex-direction: column; /* Apila la foto arriba y el texto abajo */
+  }
   
-}
-
-.detalle-producto__descripcion {
-  margin: 0;
-  color: #ffffff;
-  line-height: 1.7;
-  font-size: 1rem;
-}
-
-.detalle-producto__resumen {
-  display: grid;
-  gap: 12px;
-}
-
-.detalle-producto__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 16px;
-  background: #f1f5f9;
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 0.95rem;
-}
-
-.detalle-producto__item strong {
-  color: #ffffff;
-}
-
-.detalle-producto__acciones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.detalle-producto__boton,
-.detalle-producto__boton--secundario {
-  border: none;
-  border-radius: 8px;
-  padding: 0.95rem 1.25rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.detalle-producto__boton {
-  background-color: #61dafb;
-  color: #1f2937;
-  font-weight: 700;
-  box-shadow: 0 8px 16px rgba(97, 218, 251, 0.25);
-}
-
-.detalle-producto__boton:hover {
-  transform: translateY(-3px);
-  background-color: #21a1c4;
-}
-
-.detalle-producto__boton--secundario {
-  background-color: #e2e8f0;
-  color: #334155;
-}
-
-.detalle-producto__boton--secundario:hover {
-  transform: translateY(-3px);
-  background-color: #cbd5e1;
-}
-
-.detalle-producto__info-extra {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
-  color: #475569;
-  font-size: 0.95rem;
-}
-
-.detalle-producto__info-extra span {
-  background: #f8fafc;
-  padding: 10px 12px;
-  border-radius: 999px;
-}
-
-@media (max-width: 860px) {
-  .detalle-producto {
-    padding: 24px 14px;
+  .detalle-imagen {
+    height: 350px; /* Achica un poco la foto en celu */
   }
-
-  .detalle-producto__info,
-  .detalle-producto__imagen {
-    max-width: 100%;
+  
+  .detalle-info {
+    padding: 25px; /* Menos relleno en celu */
   }
-}
-
-@media (max-width: 520px) {
-  .detalle-producto {
-    gap: 16px;
+  
+  .detalle-acciones {
+    flex-direction: column; /* Apila los botones */
   }
-
-  .detalle-producto__acciones {
-    flex-direction: column;
-  }
-
-  .detalle-producto__boton,
-  .detalle-producto__boton--secundario {
+  
+  .btn-carrito, .btn-volver {
     width: 100%;
   }
+}
