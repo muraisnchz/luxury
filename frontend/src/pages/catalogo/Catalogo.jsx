@@ -3,6 +3,8 @@ import ProductCard from '../../components/productCard/ProductCard';
 import { obtenerProductos } from '../../services/productoService';
 import SkeletonCard from '../../components/skeleton/SkeletonCard';
 import { Link } from 'react-router-dom';
+import { getUserRolFromToken } from '../../utils/auth';
+
 
 import './Catalogo.css';
 import Button from '../../components/button/Button';
@@ -28,6 +30,10 @@ const Catalogo = () => {
     cargarCatalogo();
   }, []);
 
+  const userRol = getUserRolFromToken();
+  // 1. Si el rol es admin, mostramos el botón de edición
+  const esAdmin = userRol === 'administrador';
+  
   // 2. Si hay error, lo mostramos
   if (error) return <h2 style={{ color: 'red', textAlign: 'center', marginTop: '50px' }}>{error}</h2>;
 
@@ -57,6 +63,7 @@ const Catalogo = () => {
               precio={producto.precio}
               categoriaId={producto.categoriaId}
               onAddToCart={() => console.log('Agregar al carrito')}
+              esAdmin={esAdmin}
             />
           ))
         )}
