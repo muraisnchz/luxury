@@ -102,3 +102,43 @@
   color: #2e7d32;
   border: 1px solid #c8e6c9;
 }
+
+/* --- Contenedor del input con ojito --- */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+/* Aseguramos que el input ocupe todo el espacio y le damos padding derecho para que el texto no pise al ícono */
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 40px; 
+}
+
+/* --- Botón del ojito --- */
+.btn-mostrar-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.btn-mostrar-password:hover {
+  color: #5a189a; /* Tu violeta característico */
+}
+
+/* Esto evita que el botón envíe el formulario si le haces clic rápido */
+.btn-mostrar-password:focus {
+  outline: none;
+}

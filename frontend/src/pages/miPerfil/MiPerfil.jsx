@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './MiPerfil.css';
 import { obtenerPerfil, actualizarPerfil, darDeBajaPerfil } from '../../services/usuarioService';
 import Button from '../../components/button/Button';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const MiPerfil = () => {
   const [formData, setFormData] = useState({
@@ -15,13 +16,15 @@ const MiPerfil = () => {
   const [mensaje, setMensaje] = useState({ tipo: '', texto: '' });
 
   
+  const [mostrarPasswordActual, setMostrarPasswordActual] = useState(false);
+  const [mostrarNuevaPassword, setMostrarNuevaPassword] = useState(false);
+  const [mostrarRepetirPassword, setMostrarRepetirPassword] = useState(false);
+
   useEffect(() => {
     const cargarDatos = async () => {
       try {
         const datosUsuario = await obtenerPerfil();
         setFormData({ ...formData, nombre: datosUsuario.nombre, email: datosUsuario.email });
-        
-                
       } catch (error) {
         console.error("Error al cargar perfil", error);
       }
@@ -40,13 +43,11 @@ const MiPerfil = () => {
     e.preventDefault();
     setMensaje({ tipo: '', texto: '' });
 
-    // Validación: Si escribió una nueva contraseña, la repetición debe coincidir
     if (formData.nuevaPassword && formData.nuevaPassword !== formData.repetirPassword) {
       setMensaje({ tipo: 'error', texto: 'Las contraseñas nuevas no coinciden.' });
       return;
     }
 
-    // Validación frontend: Si quiere cambiar clave, DEBE poner la actual
     if (formData.nuevaPassword && !formData.passwordActual) {
       setMensaje({ tipo: 'error', texto: 'Debes ingresar tu contraseña actual para cambiarla.' });
       return;
@@ -54,11 +55,13 @@ const MiPerfil = () => {
 
     try {
       await actualizarPerfil(formData);
-      console.log("Datos a enviar al backend:", formData);
       setMensaje({ tipo: 'exito', texto: '¡Perfil actualizado correctamente!' });
       
-      // Limpiamos los campos de contraseña por seguridad
       setFormData(prev => ({ ...prev, passwordActual: '', nuevaPassword: '', repetirPassword: '' }));
+      
+      setMostrarPasswordActual(false);
+      setMostrarNuevaPassword(false);
+      setMostrarRepetirPassword(false);
     } catch (error) {
       console.error('Error al actualizar perfil', error);
       setMensaje({ tipo: 'error', texto: 'Hubo un error al actualizar el perfil.' });
@@ -66,14 +69,11 @@ const MiPerfil = () => {
   };
 
   const handleEliminarCuenta = async () => {
-    // Usamos el confirm nativo del navegador para evitar clicks por accidente
     const confirmacion = window.confirm("¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.");
     
     if (confirmacion) {
       try {
         await darDeBajaPerfil();
-        
-        // Si sale bien, limpiamos el token y lo mandamos al inicio
         localStorage.removeItem('token');
         window.location.href = '/'; 
       } catch (error) {
@@ -119,37 +119,67 @@ const MiPerfil = () => {
 
           <div className="divisor"></div>
 
+          
           <div className="form-group">
             <label>Contraseña actual</label>
-            <input
-              type="password"
-              name="passwordActual"
-              placeholder="Obligatoria para cambiar contraseña"
-              value={formData.passwordActual}
-              onChange={handleChange}
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={mostrarPasswordActual ? "text" : "password"}
+                name="passwordActual"
+                placeholder="Obligatoria para cambiar contraseña"
+                value={formData.passwordActual}
+                onChange={handleChange}
+              />
+              <button 
+                type="button" 
+                className="btn-mostrar-password"
+                onClick={() => setMostrarPasswordActual(!mostrarPasswordActual)}
+              >
+                {mostrarPasswordActual ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
+          
           <div className="form-group">
             <label>Nueva contraseña</label>
-            <input
-              type="password"
-              name="nuevaPassword"
-              placeholder="Dejar en blanco para no cambiarla"
-              value={formData.nuevaPassword}
-              onChange={handleChange}
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={mostrarNuevaPassword ? "text" : "password"}
+                name="nuevaPassword"
+                placeholder="Dejar en blanco para no cambiarla"
+                value={formData.nuevaPassword}
+                onChange={handleChange}
+              />
+              <button 
+                type="button" 
+                className="btn-mostrar-password"
+                onClick={() => setMostrarNuevaPassword(!mostrarNuevaPassword)}
+              >
+                {mostrarNuevaPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
+          
           <div className="form-group">
             <label>Repetir nueva contraseña</label>
-            <input
-              type="password"
-              name="repetirPassword"
-              placeholder="Repetí la nueva contraseña"
-              value={formData.repetirPassword}
-              onChange={handleChange}
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={mostrarRepetirPassword ? "text" : "password"}
+                name="repetirPassword"
+                placeholder="Repetí la nueva contraseña"
+                value={formData.repetirPassword}
+                onChange={handleChange}
+              />
+              <button 
+                type="button" 
+                className="btn-mostrar-password"
+                onClick={() => setMostrarRepetirPassword(!mostrarRepetirPassword)}
+              >
+                {mostrarRepetirPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
           <Button type="submit" texto="Guardar cambios" color="lila" size="grande" efecto="redondeado" />

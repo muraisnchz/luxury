@@ -49,12 +49,16 @@ const obtenerUsuarioPorId = async (req, res) => {
 };
 
 // Modificación
-const modificarUsuario = async (req, res) => {
+const actualizarUsuario = async (req, res) => {
   try {
-    const usuarioActualizado = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.status(200).json({ mensaje: 'Usuario actualizado', usuario: usuarioActualizado });
+    const usuarioActualizado = await Usuario.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      { new: true }
+    );
+    res.json(usuarioActualizado);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al actualizar usuario', error: error.message });
+    res.status(500).json({ mensaje: 'Error al actualizar usuario' });
   }
 };
 
@@ -139,4 +143,13 @@ const actualizarPerfil = async (req, res) => {
   }
 };
 
-module.exports = { crearUsuario, obtenerUsuarios, obtenerUsuarioPorId, modificarUsuario, bajaLogicaUsuario, obtenerPerfil, actualizarPerfil };
+const eliminarUsuario = async (req, res) => {
+  try {
+    await Usuario.findByIdAndDelete(req.params.id);
+    res.json({ mensaje: 'Usuario eliminado de la base de datos' });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al eliminar usuario' });
+  }
+};
+
+module.exports = { crearUsuario, obtenerUsuarios, obtenerUsuarioPorId, actualizarUsuario, bajaLogicaUsuario, obtenerPerfil, actualizarPerfil, eliminarUsuario };
