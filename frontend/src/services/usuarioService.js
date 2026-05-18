@@ -44,3 +44,14 @@ export const actualizarPerfil = async (datosPerfil) => {
   });
   return respuesta.data;
 };
+
+export const darDeBajaPerfil = async () => {
+  const token = localStorage.getItem('token');
+  
+  const respuesta = await axios.delete(`${API_URL}/perfil`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return respuesta.data;
+};

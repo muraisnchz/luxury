@@ -36,6 +36,7 @@ const Usuarios = () => {
             <th style={{ padding: '12px' }}>Nombre</th>
             <th style={{ padding: '12px' }}>Email</th>
             <th style={{ padding: '12px' }}>Rol</th>
+            <th style={{ padding: '12px' }}>Estado</th> 
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,18 @@ const Usuarios = () => {
                   fontWeight: 'bold'
                 }}>
                   {u.rol}
+                </span>
+              </td>
+              <td style={{ padding: '10px' }}>
+                <span style={{ 
+                  backgroundColor: u.activo ? '#4caf50' : '#f44336',
+                  color: 'white',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  fontSize: '0.85rem',
+                  fontWeight: 'bold'
+                }}>
+                  {u.activo ? 'Activo' : 'Inactivo'}
                 </span>
               </td>
             </tr>

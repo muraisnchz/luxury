@@ -58,10 +58,17 @@ const modificarUsuario = async (req, res) => {
   }
 };
 
-// Baja Lógica
+// Baja Lógica desde /mi-Perfil, el usuario se da de baja a sí mismo, no un admin a otro usuario
 const bajaLogicaUsuario = async (req, res) => {
   try {
-    const usuarioBaja = await Usuario.findByIdAndUpdate(req.params.id, { activo: false }, { new: true });
+    const idUsuario = req.usuario.id;
+    
+    const usuarioBaja = await Usuario.findByIdAndUpdate(idUsuario, { activo: false }, { returnDocument: 'after' });
+
+    if (!usuarioBaja) {
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    }
+
     res.status(200).json({ mensaje: 'Usuario dado de baja exitosamente', usuario: usuarioBaja });
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al dar de baja al usuario', error: error.message });

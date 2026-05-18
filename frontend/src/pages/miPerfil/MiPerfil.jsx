@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './MiPerfil.css';
-import { obtenerPerfil, actualizarPerfil } from '../../services/usuarioService';
+import { obtenerPerfil, actualizarPerfil, darDeBajaPerfil } from '../../services/usuarioService';
 import Button from '../../components/button/Button';
 
 const MiPerfil = () => {
@@ -14,7 +14,7 @@ const MiPerfil = () => {
 
   const [mensaje, setMensaje] = useState({ tipo: '', texto: '' });
 
-  // Simulamos la carga de datos del usuario logueado
+  
   useEffect(() => {
     const cargarDatos = async () => {
       try {
@@ -40,7 +40,7 @@ const MiPerfil = () => {
     e.preventDefault();
     setMensaje({ tipo: '', texto: '' });
 
-    // 1. Validación frontend: Si escribió una nueva contraseña, la repetición debe coincidir
+    // Validación: Si escribió una nueva contraseña, la repetición debe coincidir
     if (formData.nuevaPassword && formData.nuevaPassword !== formData.repetirPassword) {
       setMensaje({ tipo: 'error', texto: 'Las contraseñas nuevas no coinciden.' });
       return;
@@ -65,6 +65,24 @@ const MiPerfil = () => {
     }
   };
 
+  const handleEliminarCuenta = async () => {
+    // Usamos el confirm nativo del navegador para evitar clicks por accidente
+    const confirmacion = window.confirm("¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.");
+    
+    if (confirmacion) {
+      try {
+        await darDeBajaPerfil();
+        
+        // Si sale bien, limpiamos el token y lo mandamos al inicio
+        localStorage.removeItem('token');
+        window.location.href = '/'; 
+      } catch (error) {
+        console.error('Error al dar de baja la cuenta', error);
+        setMensaje({ tipo: 'error', texto: 'Hubo un error al intentar dar de baja la cuenta.' });
+      }
+    }
+  };
+  
   return (
     <div className="perfil-container">
       <div className="perfil-card">
@@ -135,7 +153,7 @@ const MiPerfil = () => {
           </div>
 
           <Button type="submit" texto="Guardar cambios" color="lila" size="grande" efecto="redondeado" />
-          <Button type="button" texto="Eliminar cuenta" color="rojo" size="grande" efecto="redondeado" />
+          <Button type="button" texto="Eliminar cuenta" color="rojo" size="grande" efecto="redondeado" onClick={handleEliminarCuenta} />
         
         </form>
       </div>

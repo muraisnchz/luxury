@@ -16,6 +16,9 @@ router.get('/perfil', authMiddleware, usuarioController.obtenerPerfil);
 // Actualizar datos del usuario logueado
 router.put('/perfil', authMiddleware, usuarioController.actualizarPerfil);
 
+// Baja lógica del usuario logueado
+router.delete('/perfil', authMiddleware, usuarioController.bajaLogicaUsuario);
+
 // Obtener un usuario por su ID
 router.get('/:id', usuarioController.obtenerUsuarioPorId);
 
