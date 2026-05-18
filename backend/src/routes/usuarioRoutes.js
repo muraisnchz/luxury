@@ -17,16 +17,16 @@ router.get('/perfil', authMiddleware, usuarioController.obtenerPerfil);
 router.put('/perfil', authMiddleware, usuarioController.actualizarPerfil);
 
 // Baja lógica del usuario logueado
-router.delete('/perfil', authMiddleware, usuarioController.bajaLogicaUsuario);
+router.patch('/perfil', authMiddleware, usuarioController.bajaLogicaUsuario);
 
 // Obtener un usuario por su ID
 router.get('/:id', usuarioController.obtenerUsuarioPorId);
 
-// Modificar datos del usuario
-router.put('/:id', usuarioController.modificarUsuario);
+//Modificar un usuario desde el panel de admin
+router.put('/:id', authMiddleware, adminMiddleware, usuarioController.actualizarUsuario);
 
-// Baja lógica del usuario
-router.patch('/:id/baja', usuarioController.bajaLogicaUsuario);
+// Eliminar un usuario definitivamente desde el panel de admin
+router.delete('/:id', authMiddleware, adminMiddleware, usuarioController.eliminarUsuario);
 
 
 
