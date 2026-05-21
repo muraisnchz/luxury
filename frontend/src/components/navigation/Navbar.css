@@ -154,3 +154,29 @@
   font-family: inherit;
   font-weight: 500;
 }
+
+.carrito-nav-item {
+  position: relative;
+}
+
+.carrito-nav-item a {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carrito-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #e0aaff;
+  color: #3c006b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

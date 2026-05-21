@@ -39,6 +39,7 @@ const Login = () => {
 
       // 2. ¡Atrapamos el token y lo guardamos en el LocalStorage!
       localStorage.setItem('token', data.token);
+      window.dispatchEvent(new Event('authChange'));
 
       alert('¡Login exitoso!');
 

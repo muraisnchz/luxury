@@ -1,0 +1,251 @@
+.carrito-container {
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.carrito-container h1 {
+  text-align: center;
+  color: #61065b;
+  margin-bottom: 2rem;
+}
+
+.carrito-tabla-wrapper {
+  overflow-x: auto;
+}
+
+.carrito-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.carrito-tabla th {
+  background-color: #61065b;
+  color: white;
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.carrito-tabla td {
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.carrito-tabla tbody tr {
+  background-color: #fff;
+}
+
+.carrito-tabla tbody tr:hover {
+  background-color: #f9f0f9;
+}
+
+.carrito-codigo {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.carrito-descripcion {
+  text-align: left !important;
+  font-weight: 600;
+}
+
+.carrito-cantidad-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.carrito-btn-cantidad {
+  background-color: #61065b;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.carrito-btn-cantidad:hover:not(:disabled) {
+  background-color: #9b0891;
+}
+
+.carrito-btn-cantidad:disabled {
+  background-color: #ccc;
+  cursor: default;
+}
+
+.carrito-input-cantidad {
+  width: 52px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: #333;
+  background-color: #fff;
+  -moz-appearance: textfield;
+}
+
+.carrito-input-cantidad::-webkit-outer-spin-button,
+.carrito-input-cantidad::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.carrito-input-cantidad:focus {
+  outline: 2px solid #61065b;
+  border-color: #61065b;
+}
+
+.carrito-notificacion {
+  background-color: #c0392b;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.carrito-btn-eliminar {
+  background: none;
+  border: 1px solid #61065b;
+  color: #61065b;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.carrito-btn-eliminar:hover {
+  background-color: #61065b;
+  color: white;
+}
+
+.carrito-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #61065b;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.carrito-total {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.carrito-total strong {
+  color: #61065b;
+}
+
+.carrito-footer-acciones {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.carrito-footer-acciones button,
+.carrito-footer-acciones a button {
+  border: none;
+  cursor: pointer;
+}
+
+.carrito-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.carrito-confirm-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.carrito-confirm-box p {
+  font-size: 1.05rem;
+  color: #333;
+  margin: 0;
+}
+
+.carrito-confirm-acciones {
+  display: flex;
+  gap: 1rem;
+}
+
+.carrito-confirm-acciones button {
+  border: none;
+  cursor: pointer;
+}
+
+.carrito-btn-accion {
+  border: none;
+  cursor: pointer;
+}
+
+.carrito-btn-finalizar {
+  border: none;
+  cursor: pointer;
+}
+
+.carrito-vacio {
+  text-align: center;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.carrito-vacio-texto {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+}
+
+.carrito-vacio button {
+  border: none;
+  cursor: pointer;
+}
+
+.carrito-mensaje {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
