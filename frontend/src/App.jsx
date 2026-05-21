@@ -12,7 +12,12 @@ import AltaProducto from './pages/altaProducto/AltaProducto';
 import Login from './pages/login/Login';
 import Registro from './pages/registro/Registro';
 import Usuarios from './pages/usuarios/Usuarios';
+<<<<<<< HEAD
 import Carrito from './pages/carrito/Carrito';
+=======
+import EditarProducto from './pages/editarProducto/EditarProducto';
+import MiPerfil from './pages/miPerfil/MiPerfil';
+>>>>>>> upstream/main
 
 function App() {
   return (
@@ -23,6 +28,7 @@ function App() {
         <div className="app-container">
           <Navbar brandName="Luxury" />
 
+<<<<<<< HEAD
           <Routes>
             <Route path="/" element={<Catalogo />} />
             <Route path="/producto/:id" element={<DetalleProducto />} />
@@ -47,6 +53,29 @@ function App() {
               }
             />
           </Routes>
+=======
+        <Routes>
+          <Route path="/" element={<Catalogo />} />
+          <Route path="/producto/:id" element={<DetalleProducto />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/mi-Perfil" element={<MiPerfil />} />
+
+          //Rutas protegidas para admin
+          <Route 
+            path="/admin/altaProducto" 
+            element={<AdminRoute><AltaProducto /></AdminRoute>} 
+          />
+          <Route 
+            path="/admin/usuarios" 
+            element={<AdminRoute><Usuarios /></AdminRoute>} 
+          />
+          <Route 
+            path="/admin/editarProducto/:id" 
+            element={<AdminRoute><EditarProducto /></AdminRoute>} 
+          />
+        </Routes>
+>>>>>>> upstream/main
 
           <Footer year={new Date().getFullYear()} companyName="Luxury" />
         </div>

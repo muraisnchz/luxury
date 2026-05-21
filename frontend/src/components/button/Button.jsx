@@ -1,8 +1,11 @@
 import './Button.css'
 
-function Button({ texto, color, size, efecto }) {
+function Button({ texto, color, size, efecto, onClick, type }) {
   return (
-    <button className={`${color} ${size} ${efecto}`}>
+    <button 
+    type={type}
+    onClick={onClick}
+    className={`${color} ${size} ${efecto}`}>
       {texto}
     </button>
   )
