@@ -1,26 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getUserRolFromToken, getToken } from '../../utils/auth'; 
-import { FaUserCircle, FaSignOutAlt, FaShoppingCart, FaPlus, FaUsers } from 'react-icons/fa'; 
+import { getUserRolFromToken, getToken } from '../../utils/auth';
+import { FaUserCircle, FaSignOutAlt, FaShoppingCart, FaPlus, FaUsers } from 'react-icons/fa';
+import { useCart } from '../../context/CartContext';
 
 import './Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const menuRef = useRef(null); // Para cerrar el menú si clickean afuera
+  const menuRef = useRef(null);
+  const { cantidadTotal } = useCart();
 
-  const estaLogueado = !!getToken(); 
+  const estaLogueado = !!getToken();
   const rol = getUserRolFromToken();
   const esAdmin = rol === 'administrador';
 
   const cerrarSesion = () => {
     localStorage.removeItem('token');
+    window.dispatchEvent(new Event('authChange'));
     setMenuAbierto(false);
     navigate('/');
   };
 
-  // Cerrar el menú si se hace click fuera de él
   useEffect(() => {
     const handleClickAfuera = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -36,28 +38,29 @@ const Navbar = () => {
       <div className="logo">
         <Link to="/">💎 Luxury</Link>
       </div>
-      
+
       <ul className="nav-links">
         <li><Link to="/">Inicio</Link></li>
-        
-        <li>
+
+        <li className="carrito-nav-item">
           <Link to="/carrito" title="Ver Carrito">
             <FaShoppingCart size={22} />
+            {cantidadTotal > 0 && (
+              <span className="carrito-badge">{cantidadTotal}</span>
+            )}
           </Link>
         </li>
-        
+
         <li className="user-menu-container" ref={menuRef}>
           {estaLogueado ? (
             <>
-              {/* Ícono que abre el menú */}
-              <div 
-                className="user-icon-trigger" 
+              <div
+                className="user-icon-trigger"
                 onClick={() => setMenuAbierto(!menuAbierto)}
               >
                 <FaUserCircle size={26} />
               </div>
 
-              {/* Menú Desplegable */}
               {menuAbierto && (
                 <div className="dropdown-menu">
                   {esAdmin && (

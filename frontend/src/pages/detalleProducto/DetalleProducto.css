@@ -95,6 +95,20 @@ body {
   text-decoration: none;
 }
 
+.detalle-exito {
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.detalle-error {
+  color: #c0392b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
 /* --- Responsive (Para celulares) --- */
 @media (max-width: 768px) {
   .detalle-layout {
