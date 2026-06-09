@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(171, 144, 180);
+}
+
+/* --- Contenedor principal que centra todo --- */
+.detalle-container {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.detalle-layout {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff; /* Fondo blanco de la tarjeta */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.detalle-imagen-container {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8fafc;
+}
+
+.detalle-imagen {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+/* --- Columna Derecha: Información --- */
+.detalle-info {
+  flex: 1 1 400px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detalle-titulo {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #333333;
+}
+
+.detalle-categoria {
+  display: inline-block;
+  align-self: center;
+  padding: 8px 16px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.detalle-precio {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.detalle-descripcion {
+  color: #000000;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.detalle-descripcion h3 {
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+/* --- Contenedor de botones --- */
+.detalle-acciones {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  margin-left: 30px;
+  flex-wrap: wrap;
+}
+
+.detalle-acciones a {
+  text-decoration: none;
+}
+
+/* --- Responsive (Para celulares) --- */
+@media (max-width: 768px) {
+  .detalle-layout {
+    flex-direction: column;
+  }
+  
+  .detalle-imagen {
+    height: 350px;
+  }
+  
+  .detalle-info {
+    padding: 25px;
+  }
+  
+  .detalle-acciones {
+    flex-direction: column;
+  }
+  
+  .btn-carrito, .btn-volver {
+    width: 100%;
+  }
+}
+/* --- Mensajes de feedback al agregar al carrito --- */
+.detalle-exito {
+  background: #2e7d32;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.detalle-error {
+  background: #c0392b;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn-carrito {
+  cursor: pointer;
+}
