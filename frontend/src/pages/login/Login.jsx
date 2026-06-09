@@ -104,7 +104,19 @@ const Login = () => {
             </button>
           </div>
         </div>
-
+<div style={{ marginTop: "10px", textAlign: "left" }}>
+          <Link
+            to="/forgot-password"
+            style={{
+              color: "#5a189a",
+              fontSize: "0.9rem",
+              textDecoration: "underline",
+            }}
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
+        </div>
+        
         <div className="form-buttons">
           <button type="submit" className="btn-save">
             Ingresar
@@ -137,18 +149,7 @@ const Login = () => {
             Registrate
           </Link>
         </div>
-        <div style={{ marginTop: "10px", textAlign: "center" }}>
-          <Link
-            to="/forgot-password"
-            style={{
-              color: "#5a189a",
-              fontSize: "0.9rem",
-              textDecoration: "underline",
-            }}
-          >
-            ¿Olvidaste tu contraseña?
-          </Link>
-        </div>
+        
       </form>
     </div>
   );
