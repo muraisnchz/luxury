@@ -108,7 +108,11 @@ const forgotPassword = async (req, res) => {
 
     usuario.resetPasswordToken = hashedToken;
     usuario.resetPasswordExpires = Date.now() + 900000; // 15 minutos
+<<<<<<< HEAD
     usuario.save();
+=======
+    await usuario.save();
+>>>>>>> 83e79bfbba564856fbb8cf96b0a1b27b968d4dc9
 
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
     await enviarMailRecuperacion(usuario.email, resetUrl);
